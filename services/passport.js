@@ -19,8 +19,8 @@ passport.use(
 	new GoogleStrategy(
 		{
 			clientID: keys.googleClientID,
-			clientSecret: keys.google.ClientSecret,
-			callbackUrl: '/auth/google/callback',
+			clientSecret: keys.googleClientSecret,
+			callbackURL: '/auth/google/callback',
 			proxy: true
 		},
 		async (accessToken, refreshToken, profile, done) => {
@@ -28,7 +28,7 @@ passport.use(
 				googleId: profile.id
 			});
 			if (existingUser) {
-				done(nulle, existingUser);
+				done(null, existingUser);
 			}
 			const user = await new User({
 				googleId: profile.id
