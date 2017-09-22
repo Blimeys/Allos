@@ -1,9 +1,10 @@
 import React from 'react';
+import MenusList from './menus/MenusList';
 
 const Home = () => {
 	return (
 		<div>
-			<h1>Home</h1>
+			<MenusList />
 		</div>
 	);
 };
