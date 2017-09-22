@@ -6,6 +6,7 @@ import * as actions from '../actions';
 import Header from './Header';
 import Landing from './Landing';
 import Home from './Home';
+import MenuNew from './menus/MenuNew';
 
 class App extends Component {
 	componentDidMount() {
@@ -19,6 +20,7 @@ class App extends Component {
 						<Header />
 						<Route exact path="/" component={Landing} />
 						<Route exact path="/home" component={Home} />
+						<Route path="/menus/new" component={MenuNew} />
 					</div>
 				</BrowserRouter>
 			</div>

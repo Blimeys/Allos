@@ -6,9 +6,9 @@ class MenusList extends Component {
 	componentDidMount() {
 		this.props.fetchMenus();
 	}
+
 	renderMenus() {
 		return this.props.menus.reverse().map(menu => {
-			console.log(menu);
 			return (
 				<div key={menu._id}>
 					<div>

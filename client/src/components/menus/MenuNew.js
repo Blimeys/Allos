@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import MenuForm from './MenuForm';
-import MenuFormNew from './MenuFormNew';
+import MenuFormReview from './MenuFormReview';
 
 class MenuNew extends Component {
 	state = { showMenuReview: false };
@@ -14,9 +14,7 @@ class MenuNew extends Component {
 			);
 		}
 		return (
-			<MenuFormReview
-				onSurveySubmit={() => this.setState({ showFormReview: true })}
-			/>
+			<MenuForm onMenuSubmit={() => this.setState({ showFormReview: true })} />
 		);
 	}
 	render() {

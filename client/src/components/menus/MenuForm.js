@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { Link } from 'react-router-dom';
 import MenuField from './MenuField';
-import formField from './formField';
+import formFields from './formFields';
 
 class MenuForm extends Component {
 	renderFields() {
-		return _.map(formField, ({ label, name }) => {
+		return _.map(formFields, ({ label, name }) => {
 			return (
 				<Field
 					key={name}
@@ -25,7 +25,7 @@ class MenuForm extends Component {
 			<div>
 				<form onSubmit={this.props.handleSubmit(this.props.onMenuSubmit)}>
 					{this.renderFields()}
-					<Link to="/menus">Cancel</Link>
+					<Link to="/home">Cancel</Link>
 					<button type="submit">Next</button>
 				</form>
 			</div>
@@ -36,4 +36,4 @@ class MenuForm extends Component {
 export default reduxForm({
 	form: 'menuForm',
 	destroyOnUnmount: false
-});
+})(MenuForm);
