@@ -4,9 +4,9 @@ import MenuForm from './MenuForm';
 import MenuFormReview from './MenuFormReview';
 
 class MenuNew extends Component {
-	state = { showMenuReview: false };
+	state = { showFormReview: false };
 	renderContent() {
-		if (this.state.showMenuReview) {
+		if (this.state.showFormReview) {
 			return (
 				<MenuFormReview
 					oncancel={() => this.setState({ showFormReview: false })}

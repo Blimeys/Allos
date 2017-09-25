@@ -10,7 +10,7 @@ class MenusList extends Component {
 	renderMenus() {
 		return this.props.menus.reverse().map(menu => {
 			return (
-				<div key={menu._id}>
+				<div key={menu._id} id={menu.gluten ? 'gluten' : null}>
 					<div>
 						<h2>
 							{menu.title}
@@ -18,6 +18,14 @@ class MenusList extends Component {
 						<p>
 							{menu.description}
 						</p>
+						<ul>
+							<li>
+								{menu.gluten ? 'gluten' : 'nogluten'}
+							</li>
+							<li>
+								{menu.crustacean ? 'crustacean' : 'nocrustacean'}
+							</li>
+						</ul>
 					</div>
 				</div>
 			);

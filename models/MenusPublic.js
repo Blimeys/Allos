@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const AllergiesSchema = new Schema({
+const MenusPublicSchema = new Schema({
+	location: String,
+	_user: { type: Schema.Types.ObjectId, ref: 'User' },
+	title: String,
+	description: String,
 	gluten: Boolean,
 	crustacean: Boolean,
 	egg: Boolean,
@@ -18,4 +22,4 @@ const AllergiesSchema = new Schema({
 	mollusc: Boolean
 });
 
-module.exports = AllergiesSchema;
+mongoose.model('menuspublic', MenusPublicSchema);
