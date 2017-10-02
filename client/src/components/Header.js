@@ -28,6 +28,7 @@ class Header extends Component {
 	render() {
 		return (
 			<nav>
+				<div>Les Allergy</div>
 				<div>
 					<ul>
 						{this.renderContent()}

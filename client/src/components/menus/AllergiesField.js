@@ -1,10 +1,10 @@
 import React from 'react';
 
-export default ({ input, name }) => {
+export default ({ input, name, label }) => {
 	return (
 		<div>
 			<label>
-				{name}
+				{label}
 			</label>
 			<input type="checkbox" {...input} />
 		</div>

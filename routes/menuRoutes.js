@@ -11,8 +11,7 @@ module.exports = app => {
 		const menus = await Menu.find({ _user: req.user.id }).select();
 		res.send(menus);
 	});
-
-	app.post('/api/menus', requireLogin, async (req, res) => {
+	app.post('/api/menu/edit', requireLogin, async (req, res) => {
 		const {
 			location,
 			title,
@@ -30,9 +29,9 @@ module.exports = app => {
 			sesame,
 			sulphite,
 			lupin,
-			mollusc
+			mollusc,
+			_id
 		} = req.body;
-		console.log(req.body);
 		const menu = new Menu({
 			location,
 			title,
@@ -52,7 +51,94 @@ module.exports = app => {
 			lupin,
 			mollusc,
 			_user: req.user.id,
-			dateCreated: Date.now()
+			_id: req.body._id
+		});
+		try {
+			editItem = await Menu.findOneAndUpdate({ _id: req.body._id }).save();
+			return;
+		} catch (err) {
+			res.status(200).send(err);
+		}
+	});
+	app.post('/api/menus/delete', requireLogin, async (req, res) => {
+		const {
+			location,
+			title,
+			description,
+			gluten,
+			crustacean,
+			egg,
+			fish,
+			peanut,
+			soybean,
+			milk,
+			nuts,
+			celery,
+			mustard,
+			sesame,
+			sulphite,
+			lupin,
+			mollusc,
+			_id
+		} = req.body;
+
+		const menu = new Menu({
+			location,
+			title,
+			description,
+			_user: req.user.id,
+			_id: req.body._id
+		});
+		try {
+			const removeItem = await Menu.findOneAndRemove({
+				_id: req.body._id
+			}).remove();
+
+			return;
+		} catch (err) {
+			res.status(422).send(err);
+		}
+	});
+	app.post('/api/menus', requireLogin, async (req, res) => {
+		const {
+			location,
+			title,
+			description,
+			gluten,
+			crustacean,
+			egg,
+			fish,
+			peanut,
+			soybean,
+			milk,
+			nuts,
+			celery,
+			mustard,
+			sesame,
+			sulphite,
+			lupin,
+			mollusc,
+			_user
+		} = req.body;
+		const menu = new Menu({
+			location,
+			title,
+			description,
+			gluten,
+			crustacean,
+			egg,
+			fish,
+			peanut,
+			soybean,
+			milk,
+			nuts,
+			celery,
+			mustard,
+			sesame,
+			sulphite,
+			lupin,
+			mollusc,
+			_user: req.user.id
 		});
 
 		try {

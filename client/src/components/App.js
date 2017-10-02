@@ -7,6 +7,8 @@ import Header from './Header';
 import Landing from './Landing';
 import Home from './Home';
 import MenuNew from './menus/MenuNew';
+import MenuEdit from './menus/edit/MenuEditForm';
+import PublicMenu from './public/PublicMenu';
 
 class App extends Component {
 	componentDidMount() {
@@ -20,7 +22,9 @@ class App extends Component {
 						<Header />
 						<Route exact path="/" component={Landing} />
 						<Route exact path="/home" component={Home} />
-						<Route path="/menus/new" component={MenuNew} />
+						<Route exact path="/menus/new" component={MenuNew} />
+						<Route exact path="/menus/edit" component={MenuEdit} />
+						<Route exact path="/public/" componenet={PublicMenu} />
 					</div>
 				</BrowserRouter>
 			</div>

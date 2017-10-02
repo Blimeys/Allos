@@ -6,6 +6,7 @@ const Home = () => {
 	return (
 		<div>
 			<MenusList />
+
 			<div>
 				<Link to="/menus/new">
 					<button>add</button>

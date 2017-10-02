@@ -10,7 +10,7 @@ module.exports = app => {
 		location = req.params.location.split('_').join(' ');
 		const menus = await Menu.find(
 			{ location: location },
-			{ _user: 0 }
+			{ _user: 0, _id: 0 }
 		).select();
 		if (menus.length == 0) {
 			res.send('404');
