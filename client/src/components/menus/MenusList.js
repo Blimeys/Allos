@@ -25,7 +25,7 @@ class MenusList extends Component {
 		// 	mollusc: false
 		// }
 
-		this.state = { location: false, category: false };
+		this.state = { location: null, category: false };
 	}
 	componentDidMount() {
 		this.props.fetchMenus();
@@ -46,7 +46,7 @@ class MenusList extends Component {
 		// 'mollusc'
 		// ];
 	}
-	componentWillUpdate() {
+	componentDidUpdate() {
 		this.props.fetchMenus();
 	}
 	handleLocation(location) {
@@ -97,38 +97,67 @@ class MenusList extends Component {
 	renderMenus() {
 		return this.props.menus.reverse().map(menu => {
 			if (menu.location === this.state.location) {
-				return (
-					<div key={menu._id} id={(menu.location, menu.category)}>
-						<div>
-							<h2>
-								{menu.title}
-							</h2>
-							<p>
-								{menu.description}
-							</p>
-							<ul>
-								{menu.gluten ? <li>gluten</li> : null}
-								{menu.crustacean ? <li>crustacean</li> : null}
-								{menu.egg ? <li>egg</li> : null}
-								{menu.fish ? <li>fish</li> : null}
-								{menu.peanut ? <li>peanut</li> : null}
-								{menu.soybean ? <li>soybean</li> : null}
-								{menu.milk ? <li>milk</li> : null}
-								{menu.nuts ? <li>nuts</li> : null}
-								{menu.celery ? <li>mustard</li> : null}
-								{menu.sesame ? <li>sesame</li> : null}
-								{menu.sulphite ? <li>sulphite</li> : null}
-								{menu.lupin ? <li>lupin</li> : null}
-								{menu.mollusc ? <li>mollusc</li> : null}
-							</ul>
+				if (!this.state.category) {
+					return (
+						<div key={menu._id} id={(menu.location, menu.category)}>
+							<div>
+								<h2>
+									{menu.title}
+								</h2>
+								<p>
+									{menu.description}
+								</p>
+								<ul>
+									{menu.gluten ? <li>gluten</li> : null}
+									{menu.crustacean ? <li>crustacean</li> : null}
+									{menu.egg ? <li>egg</li> : null}
+									{menu.fish ? <li>fish</li> : null}
+									{menu.peanut ? <li>peanut</li> : null}
+									{menu.soybean ? <li>soybean</li> : null}
+									{menu.milk ? <li>milk</li> : null}
+									{menu.nuts ? <li>nuts</li> : null}
+									{menu.celery ? <li>mustard</li> : null}
+									{menu.sesame ? <li>sesame</li> : null}
+									{menu.sulphite ? <li>sulphite</li> : null}
+									{menu.lupin ? <li>lupin</li> : null}
+									{menu.mollusc ? <li>mollusc</li> : null}
+								</ul>
+							</div>
+							<button onClick={deleteMenuItem(menu)}>delete</button>
 						</div>
-						<button onClick={deleteMenuItem(menu)}>delete</button>
-						{/* Implement edit */}
-						{/* <Link to="/menus/edit">
-						<button>Edit</button>
-					</Link> */}
-					</div>
-				);
+					);
+				} else {
+					if (menu.category === this.state.category) {
+						return (
+							<div key={menu._id} id={(menu.location, menu.category)}>
+								<div>
+									<h2>
+										{menu.title}
+									</h2>
+									<p>
+										{menu.description}
+									</p>
+									<ul>
+										{menu.gluten ? <li>gluten</li> : null}
+										{menu.crustacean ? <li>crustacean</li> : null}
+										{menu.egg ? <li>egg</li> : null}
+										{menu.fish ? <li>fish</li> : null}
+										{menu.peanut ? <li>peanut</li> : null}
+										{menu.soybean ? <li>soybean</li> : null}
+										{menu.milk ? <li>milk</li> : null}
+										{menu.nuts ? <li>nuts</li> : null}
+										{menu.celery ? <li>mustard</li> : null}
+										{menu.sesame ? <li>sesame</li> : null}
+										{menu.sulphite ? <li>sulphite</li> : null}
+										{menu.lupin ? <li>lupin</li> : null}
+										{menu.mollusc ? <li>mollusc</li> : null}
+									</ul>
+								</div>
+								<button onClick={deleteMenuItem(menu)}>delete</button>
+							</div>
+						);
+					}
+				}
 			}
 			return null;
 		});
