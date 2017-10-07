@@ -4,6 +4,7 @@ const { Schema } = mongoose;
 const MenusSchema = new Schema({
 	location: String,
 	_user: { type: Schema.Types.ObjectId, ref: 'User' },
+	category: String,
 	title: String,
 	description: String,
 	gluten: Boolean,

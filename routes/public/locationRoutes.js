@@ -8,6 +8,7 @@ const Menu = mongoose.model('menus');
 module.exports = app => {
 	app.get('/api/public/:location', async (req, res) => {
 		location = req.params.location.split('_').join(' ');
+		console.log(location);
 		const menus = await Menu.find(
 			{ location: location },
 			{ _user: 0, _id: 0 }

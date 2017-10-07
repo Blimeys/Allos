@@ -7,14 +7,12 @@ class Header extends Component {
 			case null:
 				return;
 			case false:
-				console.log('not logged in');
 				return (
 					<li>
 						<a href="/auth/google">Login with Google</a>
 					</li>
 				);
 			default:
-				console.log('logged in');
 				return [
 					<li key="1">
 						<a href="/api/logout">Logout</a>

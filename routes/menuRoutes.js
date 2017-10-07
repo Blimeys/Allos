@@ -14,6 +14,7 @@ module.exports = app => {
 	app.post('/api/menu/edit', requireLogin, async (req, res) => {
 		const {
 			location,
+			category,
 			title,
 			description,
 			gluten,
@@ -63,6 +64,7 @@ module.exports = app => {
 	app.post('/api/menus/delete', requireLogin, async (req, res) => {
 		const {
 			location,
+			category,
 			title,
 			description,
 			gluten,
@@ -103,6 +105,7 @@ module.exports = app => {
 		const {
 			location,
 			title,
+			category,
 			description,
 			gluten,
 			crustacean,
@@ -123,6 +126,7 @@ module.exports = app => {
 		const menu = new Menu({
 			location,
 			title,
+			category,
 			description,
 			gluten,
 			crustacean,

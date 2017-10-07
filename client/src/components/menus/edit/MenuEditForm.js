@@ -38,7 +38,7 @@ class MenuEdit extends Component {
 	render() {
 		return (
 			<div>
-				<form onSubmit={this.props.handleSubmit(this.props.onMenuSubmit)}>
+				<form onSubmit={this.props.handleSubmit(this.props.onEditSubmit)}>
 					{this.renderFields()}
 					{this.renderAllergiesOptions()}
 					<Link to="/home">Cancel</Link>
@@ -63,6 +63,6 @@ function validate(values) {
 
 export default reduxForm({
 	validate,
-	form: 'MenuEdit',
+	form: 'EditForm',
 	destroyOnUnmount: false
 })(MenuEdit);

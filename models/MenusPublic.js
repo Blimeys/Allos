@@ -5,6 +5,7 @@ const MenusPublicSchema = new Schema({
 	location: String,
 	_user: { type: Schema.Types.ObjectId, ref: 'User' },
 	title: String,
+	category: String,
 	description: String,
 	gluten: Boolean,
 	crustacean: Boolean,

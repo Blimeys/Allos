@@ -24,7 +24,7 @@ class App extends Component {
 						<Route exact path="/home" component={Home} />
 						<Route exact path="/menus/new" component={MenuNew} />
 						<Route exact path="/menus/edit" component={MenuEdit} />
-						<Route exact path="/public/" componenet={PublicMenu} />
+						<Route exact path="/public/:location" component={PublicMenu} />
 					</div>
 				</BrowserRouter>
 			</div>

@@ -2,8 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class LocationList extends Component {
+	toggleLocations = id => {
+		console.log(id);
+	};
 	renderLocations() {
 		return this.props.menus.reverse().map(locations => {
+			// const locationListing = locations.location;
+			// console.log(locationListing);
 			if (!locations) {
 				return (
 					<div>
@@ -12,8 +17,11 @@ class LocationList extends Component {
 				);
 			}
 			return (
-				<div key={locations._id}>
-					<button>
+				<div key={locations.location}>
+					<button
+						id={locations.location}
+						onClick={this.toggleLocations.bind(this.props.location)}
+					>
 						{locations.location}
 					</button>
 				</div>

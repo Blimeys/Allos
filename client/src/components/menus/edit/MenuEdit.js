@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import MenuEditForm from './MenuEditForm';
-import MenuFormReview from './MenuFormReview';
+import EditReview from './EditReview';
 
 class EditMenu extends Component {
 	state = { showFormReview: false };
 	renderContent() {
 		if (this.state.showFormReview) {
 			return (
-				<MenuFormReview
+				<EditFormReview
 					oncancel={() => this.setState({ showFormReview: false })}
 				/>
 			);
 		}
 		return (
-			<MenuForm onMenuSubmit={() => this.setState({ showFormReview: true })} />
+			<EditForm onEditSubmit={() => this.setState({ showFormReview: true })} />
 		);
 	}
 	render() {

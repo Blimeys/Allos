@@ -15,9 +15,9 @@ export const submitMenu = (values, history) => async dispatch => {
 	history.push('/home');
 	dispatch({ type: FETCH_USER, payload: res.data });
 };
-export const fetchPublicMenus = () => async dispatch => {
-	const res = await axios.get('/api/public/:location');
-	console.log(res);
+export const fetchPublicMenus = currentPath => async dispatch => {
+	const res = await axios.get('/api/public/' + currentPath);
+	console.log(res.data.length);
 	dispatch({ type: FETCH_PUBLIC_MENUS, payload: res.data });
 };
 
