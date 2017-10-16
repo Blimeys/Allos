@@ -14,7 +14,7 @@ module.exports = app => {
 			{ _user: 0, _id: 0 }
 		).select();
 		if (menus.length == 0) {
-			res.send('404');
+			res.json({ error: true });
 		}
 		res.send(menus);
 	});

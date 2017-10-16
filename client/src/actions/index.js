@@ -15,15 +15,17 @@ export const submitMenu = (values, history) => async dispatch => {
 	history.push('/home');
 	dispatch({ type: FETCH_USER, payload: res.data });
 };
+
 export const fetchPublicMenus = currentPath => async dispatch => {
 	const res = await axios.get('/api/public/' + currentPath);
 	console.log(res.data.length);
 	dispatch({ type: FETCH_PUBLIC_MENUS, payload: res.data });
 };
 
-export const deleteMenuItem = (values, history) => async dispatch => {
+export const deleteMenuItem = values => async dispatch => {
 	const res = await axios.post('/api/menus/delete', values);
-	dispatch({ type: FETCH_USER, payload: res.data });
+
+	dispatch({ type: FETCH_MENUS, payload: res.data });
 };
 export const editMenuItem = (values, history) => async dispatch => {
 	const res = await axios.post('api/menus/edit', values);

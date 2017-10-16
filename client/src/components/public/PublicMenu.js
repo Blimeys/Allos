@@ -10,6 +10,9 @@ class PublicMenu extends Component {
 	}
 
 	renderMenus() {
+		if (this.props.menus.error) {
+			return <div>404 - Something went wrong</div>;
+		}
 		return this.props.menus.reverse().map(menu => {
 			if (menu.length < 1) {
 				return (

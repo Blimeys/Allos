@@ -19,7 +19,7 @@ class MenuNew extends Component {
 	}
 	render() {
 		return (
-			<div>
+			<div className="main">
 				{this.renderContent()}
 			</div>
 		);

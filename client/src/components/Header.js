@@ -8,31 +8,32 @@ class Header extends Component {
 				return;
 			case false:
 				return (
-					<li>
-						<a href="/auth/google">Login with Google</a>
-					</li>
+					<a href="/auth/google">
+						<i className="fa fa-user-o fa-1x" aria-hidden="true" />
+					</a>
 				);
 			default:
-				return [
-					<li key="1">
-						<a href="/api/logout">Logout</a>
-					</li>,
-					<li key="2">
-						<h3>You are logged in</h3>
-					</li>
-				];
+				return (
+					<a href="/api/logout">
+						<i className="fa fa-sign-out fa-1x" aria-hidden="true" />
+					</a>
+				);
 		}
 	}
 	render() {
 		return (
-			<nav>
-				<div>Les Allergy</div>
-				<div>
-					<ul>
+			<div className="header">
+				<div className="header-content">
+					<div className="header-logo">
+						<span className="logo-left-font">Les</span>
+						<span className="logo-right-font">allergy</span>
+					</div>
+
+					<div className="header-user">
 						{this.renderContent()}
-					</ul>
+					</div>
 				</div>
-			</nav>
+			</div>
 		);
 	}
 }

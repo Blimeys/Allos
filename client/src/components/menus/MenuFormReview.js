@@ -23,24 +23,32 @@ const MenuFormReview = ({ onCancel, formValues, submitMenu, history }) => {
 		return (
 			<div key={name}>
 				<label>
-					<h3>
+					<h2>
 						{label}
-					</h3>
+					</h2>
 				</label>
 				<div>
-					{formValues[name] ? 'contains ' + formValues[name] : null}
+					<p>
+						{formValues[name] ? 'contains ' + formValues[name] : null}
+					</p>
 				</div>
 			</div>
 		);
 	});
 	return (
 		<div>
-			<h5>Please confirm your entries</h5>
-			{console.log(formValues)}
+			<h2>Please confirm your entries</h2>
 			{reviewFields}
 			{reviewAllergiesFields}
-			<button onClick={onCancel}>back</button>
-			<button onClick={() => submitMenu(formValues, history)}>Send</button>
+			<button className="blank-button" onClick={onCancel}>
+				<i className="fa fa-arrow-left" aria-hidden="true" />
+			</button>
+			<button
+				className="blank-button"
+				onClick={() => submitMenu(formValues, history)}
+			>
+				<i className="fa fa-check" aria-hidden="true" />
+			</button>
 		</div>
 	);
 };

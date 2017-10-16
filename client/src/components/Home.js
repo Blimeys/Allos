@@ -4,14 +4,15 @@ import MenusList from './menus/MenusList';
 
 const Home = () => {
 	return (
-		<div>
+		<div className="main">
 			<MenusList />
 
-			<div>
-				<Link to="/menus/new">
-					<button>add</button>
-				</Link>
-			</div>
+			<Link to="/menus/new">
+				<span className="fa-stack fa-2x">
+					<i className="fa fa-circle fa-stack-2x" />
+					<i className="fa fa-plus fa-stack-1x fa-inverse" />
+				</span>
+			</Link>
 		</div>
 	);
 };

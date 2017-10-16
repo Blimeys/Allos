@@ -37,12 +37,20 @@ class MenuForm extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className="main-middle">
 				<form onSubmit={this.props.handleSubmit(this.props.onMenuSubmit)}>
 					{this.renderFields()}
 					{this.renderAllergiesOptions()}
-					<Link to="/home">Cancel</Link>
-					<button type="submit">Next</button>
+					<div className="form-buttons-holder">
+						<button className="blank-button buttons-clickable">
+							<Link to="/home">
+								<i className="fa fa-times fa-2x" aria-hidden="true" />
+							</Link>
+						</button>
+						<button type="submit" className="blank-button buttons-clickable">
+							<i className="fa fa-arrow-right fa-2x" aria-hidden="true" />
+						</button>
+					</div>
 				</form>
 			</div>
 		);
