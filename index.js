@@ -8,6 +8,7 @@ const keys = require('./config/keys');
 require('./models/User');
 require('./models/Menus');
 require('./models/MenusPublic');
+require('./models/UserLocations');
 require('./services/passport');
 
 mongoose.connect(keys.mongoURI);
@@ -27,6 +28,7 @@ app.use(passport.session());
 require('./routes/authRoutes')(app);
 require('./routes/menuRoutes')(app);
 require('./routes/public/locationRoutes')(app);
+require('./routes/userLocationsRoutes')(app);
 
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static('client/build'));
