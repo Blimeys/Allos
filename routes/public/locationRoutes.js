@@ -7,15 +7,16 @@ const Menu = mongoose.model('menus');
 
 module.exports = app => {
 	app.get('/api/public/:location', async (req, res) => {
-		location = req.params.location.split('_').join(' ');
-		console.log(location);
+		location = req.params.location.replace(/_/g, ' ');
+
 		const menus = await Menu.find(
 			{ location: location },
 			{ _user: 0, _id: 0 }
 		).select();
+		console.log(menus);
 		if (menus.length == 0) {
-			res.json({ error: true });
+			return res.json({ error: true });
 		}
-		res.send(menus);
+		return res.send(menus);
 	});
 };

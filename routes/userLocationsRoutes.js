@@ -8,20 +8,60 @@ const UserLocations = mongoose.model('userLocations');
 
 module.exports = app => {
 	app.get('/api/userlocations', requireLogin, async (req, res) => {
-		const users = await UserLocations.find({ _user: req.user.id }).select();
+		const users = await UserLocations.find(
+			{ _user: req.user.id },
+			{ _user: 0 }
+		).select();
 		res.send(users);
 	});
-	app.post('/api/userlocations', requireLogin, async (req, res) => {
-		const { locations, _user } = req.body;
-		const userLocation = new UserLocations({
-			locations,
-			_user: req.user.id
+	app.post('/api/new/userlocations', requireLogin, async (req, res) => {
+		const { location, _user } = req.body;
+		const existingLocation = await UserLocations.find({
+			location: req.body.location
 		});
-		try {
-			await userLocation.save();
-			const user = await req.user.save();
 
-			res.send(user);
+		try {
+			await existingLocation;
+			if (existingLocation[0]) {
+				console.log({ error: true });
+				return res.json({ error: 'location already exists' });
+			} else {
+				const userLocation = new UserLocations({
+					location: req.body.location,
+					_user: req.user.id
+				});
+				console.log(userLocation);
+				try {
+					await userLocation.save();
+					const user = await req.user.save();
+
+					res.send(user);
+				} catch (err) {
+					res.status(422).send(err);
+				}
+			}
+		} catch (err) {
+			res.status(422).send(err);
+		}
+	});
+	app.post('/api/userlocations', requireLogin, async (req, res) => {
+		const { location, _user } = req.body;
+		const existingLocation = await UserLocations.find({
+			location: req.body.location
+		});
+
+		try {
+			await existingLocation;
+			if (existingLocation[0]) {
+				console.log({ error: true });
+				return res.json({ error: 'location already exists' });
+			} else {
+				try {
+					res.json({ success: 'location do not exists' });
+				} catch (err) {
+					res.status(422).send(err);
+				}
+			}
 		} catch (err) {
 			res.status(422).send(err);
 		}

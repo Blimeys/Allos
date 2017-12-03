@@ -6,7 +6,6 @@ export default function(state = [], action) {
 			return action.payload;
 		case FETCH_MENUS:
 			return action.payload;
-
 		default:
 			return state;
 	}

@@ -1,13 +1,40 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import MenuField from './MenuField';
 import formFields from './formFields';
+import { fetchLocations } from '../../actions';
 import allergiesOptions from './allergiesOptions';
 import AllergiesField from './AllergiesField';
 
 class MenuForm extends Component {
+	componentDidMount() {
+		this.props.fetchLocations();
+	}
+	renderLocationList() {
+		return this.props.locations.reverse().map(location => {
+			return (
+				<option key={location._id} value={location.location}>
+					{location.location}
+				</option>
+			);
+		});
+	}
+	renderLocations() {
+		return (
+			<Field
+				key="location-name"
+				component="select"
+				label="Location"
+				name="location"
+			>
+				<option />
+				{this.renderLocationList()}
+			</Field>
+		);
+	}
 	renderFields() {
 		return _.map(formFields, ({ label, name }) => {
 			return (
@@ -39,6 +66,7 @@ class MenuForm extends Component {
 		return (
 			<div className="main-middle">
 				<form onSubmit={this.props.handleSubmit(this.props.onMenuSubmit)}>
+					<div>{this.renderLocations()}</div>
 					{this.renderFields()}
 					{this.renderAllergiesOptions()}
 					<div className="form-buttons-holder">
@@ -68,9 +96,14 @@ function validate(values) {
 
 	return errors;
 }
+function mapStatToProps({ locations }) {
+	return { locations };
+}
 
-export default reduxForm({
+MenuForm = reduxForm({
 	validate,
 	form: 'menuForm',
 	destroyOnUnmount: false
 })(MenuForm);
+
+export default connect(mapStatToProps, { fetchLocations })(MenuForm);

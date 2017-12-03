@@ -9,7 +9,7 @@ class MenuNew extends Component {
 		if (this.state.showFormReview) {
 			return (
 				<MenuFormReview
-					oncancel={() => this.setState({ showFormReview: false })}
+					onCancel={() => this.setState({ showFormReview: false })}
 				/>
 			);
 		}
@@ -18,11 +18,7 @@ class MenuNew extends Component {
 		);
 	}
 	render() {
-		return (
-			<div className="main">
-				{this.renderContent()}
-			</div>
-		);
+		return <div className="main">{this.renderContent()}</div>;
 	}
 }
 

@@ -5,7 +5,6 @@ import { fetchPublicMenus } from '../../actions';
 class PublicMenu extends Component {
 	componentDidMount() {
 		const currentPath = this.props.match.params.location;
-		// console.log(currentPath);
 		this.props.fetchPublicMenus(currentPath);
 	}
 
@@ -24,12 +23,8 @@ class PublicMenu extends Component {
 			return (
 				<div key={menu._id} id={(menu.gluten ? 'gluten' : null, menu.location)}>
 					<div>
-						<h2>
-							{menu.title}
-						</h2>
-						<p>
-							{menu.description}
-						</p>
+						<h2>{menu.title}</h2>
+						<p>{menu.description}</p>
 						<ul>
 							{menu.nuts ? <li>nuts</li> : null}
 							{menu.gluten ? <li>gluten</li> : null}
@@ -47,10 +42,6 @@ class PublicMenu extends Component {
 							{menu.mollusc ? <li>mollusc</li> : null}
 						</ul>
 					</div>
-					{/* Implement edit */}
-					{/* <Link to="/menus/edit">
-						<button>Edit</button>
-					</Link> */}
 				</div>
 			);
 		});
