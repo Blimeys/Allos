@@ -9,11 +9,7 @@ class AllergyFilters extends Component {
 		console.log(this.props.allergySelector);
 	}
 	handleFilter(allergy) {
-		if (this.props.allergySelector.indexOf(allergy) === -1) {
-			this.props.handleAllergy(allergy);
-		} else {
-			return null;
-		}
+		this.props.handleAllergy(allergy);
 	}
 	renderAllergyButtons() {
 		return _.map(allergiesOptions, ({ label, name }) => {
