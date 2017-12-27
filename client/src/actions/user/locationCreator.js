@@ -15,11 +15,14 @@ export const submitLocation = (values, history) => async dispatch => {
 };
 export const testNewLocation = values => async dispatch => {
 	const res = await axios.post('/api/userlocations', {
-		location: values.location.toLowerCase()
+		location: values.toLowerCase()
 	});
 	if (!res.data.error) {
 		dispatch({ type: NEW_LOCATION, payload: res.data });
 	} else if (res.data.error) {
 		dispatch({ type: NEW_LOCATION, payload: res.data });
 	}
+};
+export const resetNewLocationData = () => async dispatch => {
+	dispatch({ type: NEW_LOCATION, payload: [] });
 };

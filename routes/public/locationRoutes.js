@@ -11,9 +11,8 @@ module.exports = app => {
 
 		const menus = await Menu.find(
 			{ location: location },
-			{ _user: 0, _id: 0 }
+			{ _user: 0 }
 		).select();
-		console.log(menus);
 		if (menus.length == 0) {
 			return res.json({ error: true });
 		}

@@ -1,8 +1,8 @@
-import { NEW_LOCATION } from '../actions/user/types';
+import { FETCH_PUBLIC_MENUS } from '../../actions/public/types';
 
 export default function(state = [], action) {
 	switch (action.type) {
-		case NEW_LOCATION:
+		case FETCH_PUBLIC_MENUS:
 			return action.payload;
 		default:
 			return state;

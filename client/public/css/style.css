@@ -91,6 +91,9 @@ body {
 	cursor: pointer;
 	color: #b73f3d;
 }
+.home-link {
+	text-transform: none;
+}
 input {
 	padding: 10px;
 	border: none;

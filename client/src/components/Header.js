@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class Header extends Component {
 	renderContent() {
@@ -24,20 +25,19 @@ class Header extends Component {
 		return (
 			<div className="header">
 				<div className="header-content">
-					<div className="header-logo">
-						<span className="logo-left-font">Les</span>
-						<span className="logo-right-font">allergy</span>
-					</div>
-
-					<div className="header-user">
-						{this.renderContent()}
-					</div>
+					<Link to="/home" className="home-link">
+						<div className="header-logo">
+							<span className="logo-left-font">Les</span>
+							<span className="logo-right-font">a</span>
+						</div>
+					</Link>
+					<div className="header-user">{this.renderContent()}</div>
 				</div>
 			</div>
 		);
 	}
 }
-function mapStatToProps({ auth }) {
+function mapStateToProps({ auth }) {
 	return { auth };
 }
-export default connect(mapStatToProps)(Header);
+export default connect(mapStateToProps)(Header);

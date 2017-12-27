@@ -10,12 +10,8 @@ const MenuFormReview = ({ onCancel, formValues, submitMenu, history }) => {
 	const reviewFields = _.map(formFields, ({ name, label }) => {
 		return (
 			<div key={name}>
-				<label>
-					{label}
-				</label>
-				<div>
-					{formValues[name]}
-				</div>
+				<label>{label}</label>
+				<div>{formValues[name]}</div>
 			</div>
 		);
 	});
@@ -23,14 +19,10 @@ const MenuFormReview = ({ onCancel, formValues, submitMenu, history }) => {
 		return (
 			<div key={name}>
 				<label>
-					<h2>
-						{label}
-					</h2>
+					<h2>{label}</h2>
 				</label>
 				<div>
-					<p>
-						{formValues[name] ? 'contains ' + formValues[name] : null}
-					</p>
+					<p>{formValues[name] ? 'contains ' + formValues[name] : null}</p>
 				</div>
 			</div>
 		);
