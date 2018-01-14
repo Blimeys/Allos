@@ -5,18 +5,22 @@ import allergiesOptions from './allergiesOptions';
 import { handleAllergy, resetAllergy } from '../../actions';
 
 class AllergyFilters extends Component {
-	componentDidUpdate() {
-		console.log(this.props.allergySelector);
-	}
 	handleFilter(allergy) {
 		this.props.handleAllergy(allergy);
 	}
+
 	renderAllergyButtons() {
 		return _.map(allergiesOptions, ({ label, name }) => {
 			return (
 				<button
+					className={
+						this.props.allergySelector[name]
+							? 'selector buttons-clickable buttons-on'
+							: 'selector buttons-clickable'
+					}
 					key={label}
 					name={name}
+					id={name}
 					label={name}
 					onClick={this.handleFilter.bind(this, name)}
 				>

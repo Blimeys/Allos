@@ -7,6 +7,7 @@ import filtersReducer from './filtersReducer';
 import newData from './newData';
 import publicMenusReducer from './public/publicMenusReducer';
 import allergySelectorReducer from './public/allergySelectorReducer';
+import filteredMenusReducer from './public/filteredMenusReducer';
 
 export default combineReducers({
 	auth: authReducer,
@@ -16,5 +17,6 @@ export default combineReducers({
 	filters: filtersReducer,
 	newData: newData,
 	publicMenus: publicMenusReducer,
-	allergySelector: allergySelectorReducer
+	allergySelector: allergySelectorReducer,
+	filteredMenusData: filteredMenusReducer
 });

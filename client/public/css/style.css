@@ -55,20 +55,24 @@ body {
 	-webkit-tab-highlight-color: rgba(0, 0, 0, 0) !important;
 	cursor: pointer;
 }
-.buttons-clickable:hover {
+.buttons-on {
 	background-color: #d8e4ad;
 	outline: none;
 }
-.buttons-clickable:focus {
-	background-color: #add88a;
+.buttons-clickable:hover {
+	background-color: #d8e4ef;
 	outline: none;
 }
-.buttons-clickable:active {
-	background-color: #add88a;
+.buttons-clickable:focus {
+	background-color: #d8e4ad;
+	outline: none;
+}
+/*.buttons-clickable:active {
+	background-color: #d8e4ad;
 }
 .button-active {
-	background-color: #add88a;
-}
+	background-color: #d8e4ad;
+}*/
 .fa-circle {
 	color: #c85c59;
 	text-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14),

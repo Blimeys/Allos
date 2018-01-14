@@ -1,21 +1,20 @@
 import { ALLERGY_SELECTOR, RESET_ALLERGY_SELECTOR } from '../../actions/types';
-
 export default function(
 	state = {
-		gluten: true,
-		crustacean: true,
-		egg: true,
-		fish: true,
-		peanut: true,
-		soybean: true,
-		milk: true,
-		nuts: true,
-		celery: true,
-		mustard: true,
-		sesame: true,
-		sulphite: true,
-		lupin: true,
-		mollusc: true
+		gluten: false,
+		crustacean: false,
+		egg: false,
+		fish: false,
+		peanut: false,
+		soybean: false,
+		milk: false,
+		nuts: false,
+		celery: false,
+		mustard: false,
+		sesame: false,
+		sulphite: false,
+		lupin: false,
+		mollusc: false
 	},
 	action
 ) {
@@ -26,20 +25,20 @@ export default function(
 			return { ...state };
 		case RESET_ALLERGY_SELECTOR:
 			var resetstate = {
-				gluten: true,
-				crustacean: true,
-				egg: true,
-				fish: true,
-				peanut: true,
-				soybean: true,
-				milk: true,
-				nuts: true,
-				celery: true,
-				mustard: true,
-				sesame: true,
-				sulphite: true,
-				lupin: true,
-				mollusc: true
+				gluten: false,
+				crustacean: false,
+				egg: false,
+				fish: false,
+				peanut: false,
+				soybean: false,
+				milk: false,
+				nuts: false,
+				celery: false,
+				mustard: false,
+				sesame: false,
+				sulphite: false,
+				lupin: false,
+				mollusc: false
 			};
 			return { ...resetstate };
 
