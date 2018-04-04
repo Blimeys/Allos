@@ -88,6 +88,7 @@ module.exports = app => {
 			location,
 			title,
 			description,
+			price,
 			_user: req.user.id,
 			_id: req.body._id
 		});
@@ -107,6 +108,7 @@ module.exports = app => {
 			title,
 			category,
 			description,
+			price,
 			gluten,
 			crustacean,
 			egg,
@@ -128,6 +130,7 @@ module.exports = app => {
 			title,
 			category,
 			description,
+			price,
 			gluten,
 			crustacean,
 			egg,

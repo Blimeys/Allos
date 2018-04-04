@@ -7,6 +7,7 @@ const MenusSchema = new Schema({
 	category: String,
 	title: String,
 	description: String,
+	price: String,
 	gluten: Boolean,
 	crustacean: Boolean,
 	egg: Boolean,

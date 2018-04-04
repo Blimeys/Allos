@@ -2,11 +2,14 @@ import React from 'react';
 
 export default ({ input, name, label }) => {
 	return (
-		<div>
-			<label>
+		<div className="control-group">
+			<label className="control control--checkbox">
 				{label}
+				<input type="checkbox" {...input} />
+				<div className="control__indicator"></div>
 			</label>
-			<input type="checkbox" {...input} />
+
+
 		</div>
 	);
 };

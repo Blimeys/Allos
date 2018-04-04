@@ -1,0 +1,252 @@
+.control-group {
+	display: grid;
+	width: auto;
+	padding-left: 10px;
+	text-align: left;
+	vertical-align: top;
+	background: #fff;
+}
+.form-grid {
+	display: grid;
+	grid-template-areas: 'top top' 'left right' 'left right' 'bottom-left bottom-right';
+	grid-template-columns: 75% 25%;
+	grid-row-gap: 20px;
+	grid-column-gap: 0px;
+	margin: 0;
+}
+.form-control-box-left {
+	grid-area: bottom-left;
+	margin-left: 10px;
+}
+.form-control-box-right {
+	grid-area: bottom-right;
+	text-align: right;
+	margin-right: 20px;
+}
+.form-control-box-left a i,
+.form-control-box-right i {
+	margin-bottom: 20px;
+	-webkit-text-stroke: 4px white;
+}
+.form-control-box-left a i,
+.form-control-box-right i:hover {
+	cursor: pointer;
+}
+.form-grid-top {
+	grid-area: top;
+	/* height: max-content;
+	white-space: nowrap; */
+}
+.form-grid-right {
+	grid-area: right;
+	margin-top: 20px;
+	margin-right: 0px;
+	width: max-content;
+}
+.form-grid-left {
+	grid-area: left;
+	padding-left: 10px;
+}
+.control {
+	font-size: 15px;
+	font-family: var(--primary-font);
+	text-transform: uppercase;
+	position: relative;
+	display: block;
+	margin-bottom: 15px;
+	padding-left: 27px;
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+.control input {
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+}
+.control__indicator {
+	position: absolute;
+	top: 2px;
+	left: 0;
+	width: 15px;
+	height: 15px;
+	background: #e6e6e6;
+}
+
+.control--radio .control__indicator {
+	border-radius: 50%;
+}
+/* Hover and focus states */
+.control:hover input ~ .control__indicator,
+.control input:focus ~ .control__indicator {
+	background: #ccc;
+}
+
+/* Checked state */
+.control input:checked ~ .control__indicator {
+	background: #ecba27;
+}
+
+/* Hover state whilst checked */
+.control:hover input:not([disabled]):checked ~ .control__indicator,
+.control input:checked:focus ~ .control__indicator {
+	background: #ad8611;
+}
+
+/* Disabled state */
+.control input:disabled ~ .control__indicator {
+	pointer-events: none;
+	opacity: 0.6;
+	background: #e6e6e6;
+}
+
+/* Check mark */
+.control__indicator:after {
+	position: absolute;
+	display: none;
+	content: '';
+}
+
+/* Show check mark */
+.control input:checked ~ .control__indicator:after {
+	display: block;
+}
+
+/* Checkbox tick */
+.control--checkbox .control__indicator:after {
+	top: 1px;
+	left: 5px;
+	width: 3px;
+	height: 8px;
+	transform: rotate(45deg);
+	border: solid #fff;
+	border-width: 0 2px 2px 0;
+}
+
+/* Disabled tick colour */
+.control--checkbox input:disabled ~ .control__indicator:after {
+	border-color: #7b7b7b;
+}
+
+/* Radio button inner circle */
+.control--radio .control__indicator:after {
+	top: 7px;
+	left: 7px;
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: #fff;
+}
+
+/* Disabled circle colour */
+.control--radio input:disabled ~ .control__indicator:after {
+	background: #7b7b7b;
+}
+.white-bg {
+	background-color: white;
+}
+.location-list-selector {
+	margin-top: 10px;
+	padding-left: 10px;
+	line-height: 52px;
+	overflow: hidden;
+}
+input {
+	width: 90%;
+}
+input,
+textarea {
+	padding: 6px;
+	border: none;
+	border-bottom: solid 1px #c9c9c9;
+	transition: border 0.3s;
+	font-family: var(--primary-font);
+	font-size: var(--paragraph-font-regular);
+	outline: none;
+}
+textarea {
+	margin-top: 10px;
+	border: solid 1px #c9c9c9;
+	resize: none;
+	height: 250px;
+	margin-bottom: 20px;
+	width: 90%;
+	transition: border 0.3s;
+}
+input:focus {
+	border-bottom: solid 1px #969696;
+	outline: none;
+}
+textarea:focus {
+	border-color: #969696;
+	outline: none;
+}
+
+input::placeholder,
+textarea::placeholder {
+	color: #c9c9c9;
+}
+.button-control {
+	border: none;
+}
+.confirm-box {
+	margin: 20px;
+}
+.confirm-allergens {
+	display: grid;
+	float: left;
+	border-right: 1px;
+	border-style: solid;
+	margin-right: 15px;
+	border-left: 0;
+	border-top: 0;
+	border-bottom: 0;
+}
+.allergen-item {
+	font-family: var(--secondary-font);
+	font-size: 14px;
+	margin-right: 10px;
+	padding-left: 6px;
+	padding-right: 6px;
+	padding-bottom: 2px;
+	width: max-content;
+	color: #baa9a9;
+}
+.has-allergen {
+	color: #7f250b;
+	border-bottom: 1px;
+	border-style: solid;
+	border-color: #7f250b;
+	border-top: 0px;
+	border-left: 0px;
+	border-right: 0px;
+	display: grid;
+}
+.location-confirm {
+	font-size: 25px;
+}
+.form-warning {
+	font-family: var(--secondary-font);
+	color: red;
+	font-size: 10px;
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+.form-grid {
+	grid-row-gap: 0;
+}
+.confirm-box {
+
+}
+
+.form-grid {
+	display: grid;
+	grid-template-areas: 'top top' 'left left' 'right right' 'bottom-left bottom-right';
+	grid-template-columns: 75% 25%;
+	grid-row-gap: 20px;
+	grid-column-gap: 0px;
+	margin: 0;
+}
+.lol {
+
+}
+}

@@ -1,39 +1,67 @@
 .container {
 	display: grid;
 	grid-template-areas:
-		'header header header' 'left content right'
+		'header header header' 'left-content content right-content' 'left-content middle-content right-content'
 		'footer footer footer';
-	grid-template-rows: 80px 1fr 70px;
+	/*grid-template-rows: 80px 1fr 70px;*/
 	grid-template-columns: 10% 80% 10%;
 	grid-row-gap: 0px;
 	grid-column-gap: 0px;
 	margin: 0;
 }
+.footer-content {
+	grid-area: footer;
+}
+/* .footer-content {
+	display: grid;
+	grid-template-areas: 'left-footer-content middle-footer-content right-footer-content';
+	grid-template-rows: 1fr;
+	grid-template-columns: 20% 1fr 40%;
+	grid-row-gap: 0px;
+	grid-column-gap: 0px;
+	margin: 0;
+} */
+.footer-full {
+	grid-area: left-footer-content middle-footer-content right-footer-content;
+}
 .header-content {
 	display: grid;
 	grid-template-areas: 'left middle right';
+	grid-template-rows: 1fr;
+	grid-template-columns: 20% 1fr 30%;
+	grid-row-gap: 0px;
+	grid-column-gap: 0px;
+	margin: 0;
+}
+.content {
+	grid-area: middle-content-middle;
+}
+.middle-content {
+	display: grid;
+	grid-template-areas: 'left-content-middle middle-content-middle right-content-middle';
 	grid-template-rows: 1fr;
 	grid-template-columns: 20% 1fr 20%;
 	grid-row-gap: 0px;
 	grid-column-gap: 0px;
 	margin: 0;
-	background-color: #f8fcf6;
 }
-
 .header {
 	grid-area: header;
 }
 .header-logo {
 	grid-area: left;
-	margin-left: 1rem;
+	margin-left: 10rem;
 	position: relative;
 }
 .header-user {
 	grid-area: right;
 	display: flex;
 	align-items: center;
-	margin-right: 1rem;
+	margin-right: 10rem;
 	margin-left: auto;
+}
+.user-main {
+	grid-area: middle-content;
 }
 .main {
 	grid-area: content;
@@ -42,12 +70,13 @@
 	display: grid;
 	grid-template-areas: 'main-left main-middle main-right';
 	grid-template-columns: minmax(max-content, 500px) minmax(200px; 1fr), 100px;
-	grid-template-rows: 1fr;
+
 	grid-template-columns: 5% 1fr 5%;
 	grid-row-gap: 0px;
 	grid-column-gap: 0px;
 	margin: 0;
 }
+
 .locations-container {
 }
 .category-container {

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchMenus, deleteMenuItem, fetchLocations } from '../../actions';
+import { fetchMenus, deleteMenuItem, fetchLocations, userViewLocation } from '../../actions';
+import LocationSelector from './user/LocationSelector';
+import LocationHeader from './user/LocationHeader';
+import CategorySelector from './user/CategorySelector';
 
-// import LocationList from './LocationList';
 
 class MenusList extends Component {
 	constructor() {
@@ -12,15 +14,6 @@ class MenusList extends Component {
 	componentDidMount() {
 		this.props.fetchMenus();
 		this.props.fetchLocations();
-	}
-
-	// componentWillUpdate() {
-	// 	this.props.fetchMenus();
-	// }
-	locationsListing() {
-		return this.props.locations.reverse().map(location => {
-			return console.log(location);
-		});
 	}
 	deleteAndRefresh(menu) {
 		this.props.deleteMenuItem(menu);
@@ -46,15 +39,27 @@ class MenusList extends Component {
 				});
 				var newCategories = [...new Set(categories)];
 				return newCategories.sort().map(category => {
+					if (this.state.category === category){
+						return (
+							<li
+								className="user-location location-on"
+								key={category}
+								if={category}
+								onClick={this.handleCategory.bind(this, category)}
+							>
+								{category}
+							</li>
+						);
+					}
 					return (
-						<button
-							className="selector-small buttons-clickable"
+						<li
+							className="user-location"
 							key={category}
 							if={category}
 							onClick={this.handleCategory.bind(this, category)}
 						>
 							{category}
-						</button>
+						</li>
 					);
 				});
 			}
@@ -81,183 +86,89 @@ class MenusList extends Component {
 			});
 		}
 	}
-	renderCategory(category) {
-		return category && <h1>{category}</h1>;
-	}
+
 	renderMenus() {
 		if (this.state.refresh) {
 			return this.props.menus.reverse().map(menu => {
 				if (menu.location === this.state.location) {
 					if (!this.state.category) {
 						return (
-							<div
-								className="card"
-								key={menu._id}
-								id={(menu.location, menu.category)}
-							>
-								<div>
-									<h2>
-										{menu.title}
-										<span
-											className="delete-button"
-											onClick={this.deleteAndRefresh.bind(this, menu)}
-										>
-											<i className="fa fa-minus-circle" aria-hidden="true" />
-										</span>
-									</h2>
-									<div className="card-description">
-										<p>{menu.description}</p>
-										{menu.gluten ? (
-											<span className="allergen allergenOn">gluten</span>
-										) : (
-											<span className="allergen allergenOff">gluten</span>
-										)}
-										{menu.crustacean ? (
-											<span className="allergen allergenOn">crustacean</span>
-										) : (
-											<span className="allergen allergenOff">crustacean</span>
-										)}
-										{menu.egg ? (
-											<span className="allergen allergenOn">egg</span>
-										) : (
-											<span className="allergen allergenOff">egg</span>
-										)}
-										{menu.fish ? (
-											<span className="allergen allergenOn">fish</span>
-										) : (
-											<span className="allergen allergenOff">fish</span>
-										)}
-										{menu.peanut ? (
-											<span className="allergen allergenOn">peanut</span>
-										) : (
-											<span className="allergen allergenOff">peanut</span>
-										)}
-										{menu.soybean ? (
-											<span className="allergen allergenOn">soybean</span>
-										) : (
-											<span className="allergen allergenOff">soybean</span>
-										)}
-										{menu.milk ? (
-											<span className="allergen allergenOn">milk</span>
-										) : (
-											<span className="allergen allergenOff">milk</span>
-										)}
-										{menu.nuts ? (
-											<span className="allergen allergenOn">nuts</span>
-										) : (
-											<span className="allergen allergenOff">nuts</span>
-										)}
-										{menu.celery ? (
-											<span className="allergen allergenOn">mustard</span>
-										) : (
-											<span className="allergen allergenOff">mustard</span>
-										)}
-										{menu.sesame ? (
-											<span className="allergen allergenOn">sesame</span>
-										) : (
-											<span className="allergen allergenOff">sesame</span>
-										)}
-										{menu.sulphite ? (
-											<span className="allergen allergenOn">sulphite</span>
-										) : (
-											<span className="allergen allergenOff">sulphite</span>
-										)}
-										{menu.lupin ? (
-											<span className="allergen allergenOn">lupin</span>
-										) : (
-											<span className="allergen allergenOff">sulphite</span>
-										)}
-										{menu.mollusc ? (
-											<span className="allergen allergenOn">mollusc</span>
-										) : (
-											<span className="allergen allergenOff">mollusc</span>
-										)}
+							<div className="item item-grid-holder" key={menu._id}	id={(menu.location, menu.category)}>
+							<div className="item-container">
+								<div className="item-title-container">
+									<div className="item-title">
+									<h1>
+										{menu.title}  {menu.price}
+									</h1>
 									</div>
+									<div className="item-utils">
+										<div className="delete-button" onClick={this.deleteAndRefresh.bind(this, menu)}>
+											<i className="fa fa-trash-o" aria-hidden="true">
+											</i>
+										</div>
+									</div>
+								</div>
+									<div className="allergens">
+										<ul>
+												{menu.gluten && (<li >gluten</li>)}
+												{menu.crustacean && (<li >crustacean</li>)}
+												{menu.egg && (<li >egg</li>)}
+												{menu.fish && (<li >fish</li>)}
+												{menu.peanut && (<li >peanut</li>)}
+												{menu.soybean && (<li >soybean</li>)}
+												{menu.milk && (<li >milk</li>)}
+												{menu.nuts && (<li >nuts</li>)}
+												{menu.celery && (<li >mustard</li>)}
+												{menu.sesame && (<li >sesame</li>)}
+												{menu.sulphite && (<li >sulphite</li>)}
+												{menu.lupin && (<li >lupin</li>)}
+												{menu.mollusc && (<li >mollusc</li>)}
+											</ul>
+										</div>
+										<div className="item-description">
+											<p>{menu.description}</p>
+										</div>
 								</div>
 							</div>
 						);
 					} else {
 						if (menu.category === this.state.category) {
 							return (
-								<div key={menu._id} id={(menu.location, menu.category)}>
-									<div>
-										<h4>
-											{menu.title}{' '}
-											<span
-												className="delete-button"
-												onClick={deleteMenuItem(menu)}
-											>
-												<i className="fa fa-minus-circle" aria-hidden="true" />
-											</span>
-										</h4>
-										<p>{menu.description}</p>
-										<div className="allergen-container">
-											{menu.gluten ? (
-												<span className="allergen allergenOn">gluten</span>
-											) : (
-												<span className="allergen allergenOff">gluten</span>
-											)}
-											{menu.crustacean ? (
-												<span className="allergen allergenOn">crustacean</span>
-											) : (
-												<span className="allergen allergenOff">crustacean</span>
-											)}
-											{menu.egg ? (
-												<span className="allergen allergenOn">egg</span>
-											) : (
-												<span className="allergen allergenOff">egg</span>
-											)}
-											{menu.fish ? (
-												<span className="allergen allergenOn">fish</span>
-											) : (
-												<span className="allergen allergenOff">fish</span>
-											)}
-											{menu.peanut ? (
-												<span className="allergen allergenOn">peanut</span>
-											) : (
-												<span className="allergen allergenOff">peanut</span>
-											)}
-											{menu.soybean ? (
-												<span className="allergen allergenOn">soybean</span>
-											) : (
-												<span className="allergen allergenOff">soybean</span>
-											)}
-											{menu.milk ? (
-												<span className="allergen allergenOn">milk</span>
-											) : (
-												<span className="allergen allergenOff">milk</span>
-											)}
-											{menu.nuts ? (
-												<span className="allergen allergenOn">nuts</span>
-											) : (
-												<span className="allergen allergenOff">nuts</span>
-											)}
-											{menu.celery ? (
-												<span className="allergen allergenOn">mustard</span>
-											) : (
-												<span className="allergen allergenOff">mustard</span>
-											)}
-											{menu.sesame ? (
-												<span className="allergen allergenOn">sesame</span>
-											) : (
-												<span className="allergen allergenOff">sesame</span>
-											)}
-											{menu.sulphite ? (
-												<span className="allergen allergenOn">sulphite</span>
-											) : (
-												<span className="allergen allergenOff">sulphite</span>
-											)}
-											{menu.lupin ? (
-												<span className="allergen allergenOn">lupin</span>
-											) : (
-												<span className="allergen allergenOff">sulphite</span>
-											)}
-											{menu.mollusc ? (
-												<span className="allergen allergenOn">mollusc</span>
-											) : (
-												<span className="allergen allergenOff">mollusc</span>
-											)}
+								<div className="item item-grid-holder" key={menu._id}	id={(menu.location, menu.category)}>
+								<div className="item-container">
+									<div className="item-title-container">
+										<div className="item-title">
+										<h1>
+											{menu.title}
+										</h1>
+									</div>
+										<div className="item-utils">
+											<div className="delete-button" onClick={this.deleteAndRefresh.bind(this, menu)}>
+												<i className="fa fa-trash-o" aria-hidden="true">
+												</i>
+											</div>
 										</div>
+									</div>
+										<div className="allergens">
+											<ul>
+													{menu.gluten && (<li >gluten</li>)}
+													{menu.crustacean && (<li >crustacean</li>)}
+													{menu.egg && (<li >egg</li>)}
+													{menu.fish && (<li >fish</li>)}
+													{menu.peanut && (<li >peanut</li>)}
+													{menu.soybean && (<li >soybean</li>)}
+													{menu.milk && (<li >milk</li>)}
+													{menu.nuts && (<li >nuts</li>)}
+													{menu.celery && (<li >mustard</li>)}
+													{menu.sesame && (<li >sesame</li>)}
+													{menu.sulphite && (<li >sulphite</li>)}
+													{menu.lupin && (<li >lupin</li>)}
+													{menu.mollusc && (<li >mollusc</li>)}
+												</ul>
+											</div>
+											<div className="item-description">
+												<p>{menu.description}</p>
+											</div>
 									</div>
 								</div>
 							);
@@ -271,32 +182,49 @@ class MenusList extends Component {
 	render() {
 		if (this.props.menus.length === 0) {
 			return (
-				<div className="main-middle">
+				<div className="categories">
 					<p>Get started by adding menus items</p>
 				</div>
 			);
 		} else {
+			if(this.props.userSelectLocation === null){
+				return (
+					<div>
+					<LocationSelector/>
+
+					</div>
+				)
+			} else {
 			return (
-				<div className="main-middle">
-					<h1>Locations list</h1>
+				<div className="categories">
+					<LocationHeader />
+					<CategorySelector/>
 					{this.props.menus.length === 0 && <p>Nothing to see here</p>}
 					{this.renderLocations()}
-					{this.state.location && <h1>Categories</h1>}
-					{this.renderCategories()}
-					{this.renderCategory(this.state.category)}
-					{this.state.location && this.renderMenus(this.state.location)}
-				</div>
-			);
+						{this.state.location &&
+							<div className="location-selector">
+									<ul>{this.renderCategories()}
+									</ul>
+							</div>
+						}
+						<div className="items-container items-grid">
+						{this.state.location && this.renderMenus(this.state.location)}
+						</div>
+					</div>
+
+			)
+		}
 		}
 	}
 }
 
-function mapStatToProps({ menus, locations }) {
-	return { menus, locations };
+function mapStateToProps({ menus, locations, userSelectLocation, globalAllergens}) {
+	return { menus, locations, userSelectLocation, globalAllergens};
 }
 
-export default connect(mapStatToProps, {
+export default connect(mapStateToProps, {
 	fetchMenus,
 	deleteMenuItem,
-	fetchLocations
+	fetchLocations,
+	userViewLocation
 })(MenusList);

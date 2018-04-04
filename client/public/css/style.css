@@ -1,13 +1,14 @@
 :root {
 	--primary-font: 'Open Sans', sans-serif;
 	--secondary-font: 'Muli', sans-serif;
+	--third-font: 'News Cycle', sans-serif;
 	--default-font-size: 14px;
 	--mobile-font-size: 30px;
 	--title-font-size-large: 2rem;
 	--title-font-size-medium: 1.5rem;
 	--title-font-size-small: 1.2rem;
 	--paragraph-font-regular: 1rem;
-	--paragraph-font-small: 0.8rem;
+	--paragraph-font-small: 0.9rem;
 
 	/*MOBILE*/
 	--title-font-size-large-mobile: 1.5rem;
@@ -20,6 +21,17 @@ body {
 	color: #353c4a;
 	background: white;
 	margin: 0;
+}
+button {
+	border: none;
+	background-image: none;
+	background-color: transparent;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+button:focus {
+	outline: none;
 }
 .selector {
 	min-width: 5rem;
@@ -55,24 +67,23 @@ body {
 	-webkit-tab-highlight-color: rgba(0, 0, 0, 0) !important;
 	cursor: pointer;
 }
-.buttons-on {
-	background-color: #d8e4ad;
-	outline: none;
-}
 .buttons-clickable:hover {
-	background-color: #d8e4ef;
+	background-color: #d8e4ad;
 	outline: none;
 }
 .buttons-clickable:focus {
-	background-color: #d8e4ad;
+	background-color: #add88a;
 	outline: none;
 }
-/*.buttons-clickable:active {
-	background-color: #d8e4ad;
+.buttons-clickable:active {
+	background-color: #add88a;
 }
 .button-active {
-	background-color: #d8e4ad;
-}*/
+	background-color: #add88a;
+}
+a {
+	text-decoration: none;
+}
 .fa-circle {
 	color: #c85c59;
 	text-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14),
@@ -86,18 +97,7 @@ body {
 .fa-stack:hover .fa-circle {
 	color: #b73f3d;
 }
-.delete-button {
-	color: #c85c59;
-	transition: color 400ms cubic-bezier(0.4, 0, 0.2, 1),
-		box-shadow 400ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-.delete-button:hover {
-	cursor: pointer;
-	color: #b73f3d;
-}
-.home-link {
-	text-transform: none;
-}
+
 input {
 	padding: 10px;
 	border: none;
@@ -113,7 +113,7 @@ input:focus {
 h2 {
 	font-family: var(--primary-font);
 	font-weight: 400;
-	font-size: var(--title-font-size-large);
+	font-size: var(--title-font-size-small);
 }
 h1 {
 	font-family: var(--secondary-font);
@@ -144,21 +144,28 @@ p {
 	font-size: var(--paragraph-font-regular);
 }
 a {
-	font-family: var(--primary-font);
-	text-decoration: none;
-	text-transform: uppercase;
-	font-size: var(--paragraph-font-regular);
 }
-.public-link-location {
-	transition: color 1s ease;
-}
-.public-link-location:hover {
-	color: #c85c59;
-}
-.header-user a {
+.header-user {
 	font-family: var(--primary-font);
 	font-size: var(--paragraph-font-regular);
 	text-decoration: none;
+	color: white;
+}
+.header-user i {
+	margin-right: 13px;
+	cursor: pointer;
+	transition: color 300ms ease-out;
+}
+.header-user a i {
+	margin-right: 13px;
+	cursor: pointer;
+	transition: color 300ms ease-out;
+}
+.header-user i:hover {
+	color: #edbb26;
+}
+.header-user a:last-child {
+	margin-right: 0px;
 }
 a:visited {
 	color: #353c4a;
@@ -169,15 +176,32 @@ a:visited {
 	border: none;
 }
 .logo-left-font {
-	font-family: 'Dancing Script', cursive;
-	font-size: var(--title-font-size-large);
+	font-family: 'Fjalla One', sans-serif;
+	font-size: 19px;
 	position: relative;
 	bottom: 2px;
+	line-height: 48px;
+	color: white;
+	padding-left: 10px;
 }
-.logo-right-font {
-	font-family: var(--secondary-font);
-	font-size: var(--title-font-size-large);
+.logo-container {
+	display: flex;
+	float: right;
+	margin-top: 5px;
 }
+.logo-circle {
+	font-family: 'Fjalla One', sans-serif;
+	display: block;
+	height: 40px;
+	width: 40px;
+	-moz-border-radius: 50%; /* or 50% */
+	border-radius: 50%; /* or 50% */
+	background-color: #edbb26;
+	color: #211e1e;
+	text-align: center;
+	font-size: 30px;
+}
+
 .allergen {
 	display: inline-block;
 	font-family: var(--primary-font);
@@ -191,9 +215,6 @@ a:visited {
 	margin-right: 7px;
 	border-radius: 20px 20px 20px 20px;
 	font-weight: 600;
-}
-.boldy {
-	font-weight: bold;
 }
 .allergenOff {
 	background-color: #add88a;
@@ -218,4 +239,22 @@ a:visited {
 }
 .allergen-container {
 	max-width: 100%;
+}
+.sub-title {
+	font-size: 18px;
+}
+.sub-paragraph {
+	font-size: var(--paragraph-font-small);
+}
+.sub-paragraph-large {
+	font-size: 1.1rem;
+}
+.header-user a:visited {
+	color: white;
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+.logo-container {
+	float:none;
+	margin-left: 8px;
+}
 }

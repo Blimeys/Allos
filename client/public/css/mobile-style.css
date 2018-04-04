@@ -1,31 +1,12 @@
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-	body {
-		font-size: var(--mobile-font-size);
-	}
-	p {
-		font-size: var(--paragraph-font-regular-mobile);
-	}
-	h1,
-	h2 {
-		font-size: var(--title-font-size-large-mobile);
-	}
-	h3,
-	h4 {
-		font-size: var(--title-font-size-medium-mobile);
-	}
-	h5,
-	h6 {
-		font-size: var(--title-font-size-small-mobile);
-	}
 	.selector {
 		height: 4rem;
 		min-width: 15rem;
 	}
 	.container {
 		display: grid;
-		grid-template-areas: "logo header nav" "content content content"
+		grid-template-areas: "header header header" "content content content"
 			"footer footer footer";
-		grid-template-rows: 80px 1fr 70px;
 		grid-template-columns: 20% 1fr 15%;
 		grid-row-gap: 0px;
 		grid-column-gap: 0px;
@@ -54,6 +35,6 @@
 		margin-left: 0rem;
 	}
 	.header-user {
-		margin-right: 0;
+		margin-right: 12px;
 	}
 }

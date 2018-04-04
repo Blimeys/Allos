@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_LOCATIONS, FILTER_LOCATIONS } from './types';
+import { FETCH_LOCATIONS, FILTER_LOCATIONS, USER_VIEW_LOCATION, USER_CATEGORY_FILTER, USER_ACTIVE_LOCATION, USER_ACTIVE_MENU } from './types';
 import { FETCH_MENUS } from './public/types';
 export * from './user/locationCreator.js';
 export * from './auth/user.js';
@@ -23,3 +23,15 @@ export const deleteMenuItem = values => async dispatch => {
 	const res = await axios.post('/api/menus/delete', values);
 	dispatch({ type: FETCH_MENUS, payload: res.data });
 };
+export const userViewLocation = userLocation => async dispatch =>{
+	dispatch({type: USER_VIEW_LOCATION, payload: userLocation})
+}
+export const userCategoryFilter = category => async dispatch => {
+	dispatch({type: USER_CATEGORY_FILTER, payload: category})
+}
+export const userActiveLocation = activeLocation => async dispatch => {
+	dispatch({type: USER_ACTIVE_LOCATION, payload: activeLocation})
+}
+export const userActiveMenu = menus => async dispatch => {
+	dispatch({type: USER_ACTIVE_MENU, payload: menus})
+}

@@ -48,8 +48,13 @@ class MenuForm extends Component {
 			);
 		});
 	}
+	renderDescription(){
+		return (
+			<Field placeholder="Describe it !" key="description" name="description" type="text" label="description" component="textarea"/>
+		)
+	}
 	renderAllergiesOptions() {
-		return _.map(allergiesOptions, ({ label, name }) => {
+		return _.map(allergiesOptions, ({ label, name, classStyle }) => {
 			return (
 				<Field
 					key={name}
@@ -65,21 +70,36 @@ class MenuForm extends Component {
 	render() {
 		return (
 			<div className="main-middle">
-				<form onSubmit={this.props.handleSubmit(this.props.onMenuSubmit)}>
-					<div>{this.renderLocations()}</div>
-					{this.renderFields()}
-					{this.renderAllergiesOptions()}
-					<div className="form-buttons-holder">
-						<button className="blank-button buttons-clickable">
-							<Link to="/home">
-								<i className="fa fa-times fa-2x" aria-hidden="true" />
-							</Link>
-						</button>
-						<button type="submit" className="blank-button buttons-clickable">
+				<div className="location-grid">
+					<div className="location-grid-title">
+						<h1>Create<i className="fa fa-plus black-yellow-icons" aria-hidden="true"></i></h1>
+					</div>
+					<form onSubmit={this.props.handleSubmit(this.props.onMenuSubmit)} className="form-grid white-bg">
+						<div className="form-grid-top">
+							<div className="location-list-selector">{this.renderLocations()}</div>
+							</div>
+							<div className="form-grid-left">
+								{this.renderFields()}
+								{this.renderDescription()}
+							</div>
+							<div className="form-grid-right">
+								<div>
+									{this.renderAllergiesOptions()}
+									</div>
+							</div>
+					<div className="form-control-box-left">
+								<Link to="/home">
+									<i className="fa fa-times fa-2x" aria-hidden="true" />
+								</Link>
+
+					</div>
+					<div className="form-control-box-right">
+						<button type="submit">
 							<i className="fa fa-arrow-right fa-2x" aria-hidden="true" />
 						</button>
 					</div>
 				</form>
+				</div>
 			</div>
 		);
 	}

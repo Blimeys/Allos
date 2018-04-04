@@ -8,6 +8,10 @@ import newData from './newData';
 import publicMenusReducer from './public/publicMenusReducer';
 import allergySelectorReducer from './public/allergySelectorReducer';
 import filteredMenusReducer from './public/filteredMenusReducer';
+import userViewLocationReducer from './userViewLocation';
+import globalAllergensReducer from './globalAllergens';
+import userActiveLocationReducer from './userActiveLocationReducer';
+import userCategoryReducer from './userCategoryReducer';
 
 export default combineReducers({
 	auth: authReducer,
@@ -18,5 +22,9 @@ export default combineReducers({
 	newData: newData,
 	publicMenus: publicMenusReducer,
 	allergySelector: allergySelectorReducer,
-	filteredMenusData: filteredMenusReducer
+	filteredMenusData: filteredMenusReducer,
+	userSelectLocation: userViewLocationReducer,
+	globalAllergens: globalAllergensReducer,
+	activeLocation: userActiveLocationReducer,
+	activeCategory: userCategoryReducer
 });

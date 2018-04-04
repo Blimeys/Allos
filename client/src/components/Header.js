@@ -9,15 +9,22 @@ class Header extends Component {
 				return;
 			case false:
 				return (
+					<div className="header-user">
 					<a href="/auth/google">
-						<i className="fa fa-user-o fa-1x" aria-hidden="true" />
+						<i className="fa fa-user-o fa-1x" aria-hidden="true"></i>
 					</a>
+					</div>
 				);
 			default:
 				return (
+					<div className="header-user">
+						<Link to="/menus/new"><i className="fa fa-plus" aria-hidden="true"></i></Link>
+						<Link to="/locations/new"><i className="fa fa-map-marker" aria-hidden="true"></i></Link>
+					<Link to="/home"><i className="fa fa-home" aria-hidden="true"></i></Link>
 					<a href="/api/logout">
 						<i className="fa fa-sign-out fa-1x" aria-hidden="true" />
 					</a>
+					</div>
 				);
 		}
 	}
@@ -25,15 +32,19 @@ class Header extends Component {
 		return (
 			<div className="header">
 				<div className="header-content">
-					<Link to="/home" className="home-link">
-						<div className="header-logo">
-							<span className="logo-left-font">Les</span>
-							<span className="logo-right-font">a</span>
+					<Link to="/" className="home-link">
+					<div className="header-logo">
+						<div className="logo-container">
+							<span className="logo-circle">ἄ</span>
+							<span className="logo-left-font">Allos</span>
 						</div>
+					</div>
 					</Link>
-					<div className="header-user">{this.renderContent()}</div>
+					{this.renderContent()}
+					</div>
 				</div>
-			</div>
+
+
 		);
 	}
 }

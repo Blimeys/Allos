@@ -2,8 +2,12 @@ import axios from 'axios';
 import { NEW_LOCATION } from './types';
 
 export const submitLocation = (values, history) => async dispatch => {
+	console.log(values)
 	const res = await axios.post('/api/new/userlocations', {
-		location: values.location.toLowerCase()
+		location: values.location.toLowerCase(),
+		streetAddress: values.streetAddress,
+		description: values.description,
+		externalUrl: values.externalUrl
 	});
 	if (!res.data.error) {
 		history.push('/home');

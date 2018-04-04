@@ -15,11 +15,11 @@ module.exports = app => {
 		res.send(users);
 	});
 	app.post('/api/new/userlocations', requireLogin, async (req, res) => {
-		const { location, _user } = req.body;
+		console.log(req.body)
+		const { location, streetAddress, description, externalUrl, _user } = req.body;
 		const existingLocation = await UserLocations.find({
 			location: req.body.location
 		});
-
 		try {
 			await existingLocation;
 			if (existingLocation[0]) {
@@ -28,9 +28,11 @@ module.exports = app => {
 			} else {
 				const userLocation = new UserLocations({
 					location: req.body.location,
+					externalUrl: req.body.externalUrl,
+					description: req.body.description,
+					streetAddress: req.body.streetAddress,
 					_user: req.user.id
 				});
-				console.log(userLocation);
 				try {
 					await userLocation.save();
 					const user = await req.user.save();

@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 import Header from './Header';
+import Intro from './Intro';
+import Footer from './Footer';
 import Landing from './Landing';
 import Home from './Home';
 import MenuNew from './menus/MenuNew';
@@ -18,7 +20,8 @@ class App extends Component {
 	render() {
 		return (
 			<BrowserRouter>
-				<div className="container">
+			<div>
+					<div className="container">
 					<Header />
 					<Route exact path="/" component={Landing} />
 					<Route exact path="/home" component={Home} />
@@ -26,7 +29,10 @@ class App extends Component {
 					{/* <Route exact path="/menus/edit" component={MenuEdit} /> */}
 					<Route exact path="/locations/new" component={LocationNew} />
 					<Route exact path="/public/:location" component={PublicMenu} />
-				</div>
+					</div>
+					<Route exact path="/" component={Intro} />
+					<Footer />
+					</div>
 			</BrowserRouter>
 		);
 	}
