@@ -31,12 +31,9 @@ class Menus extends Component {
 		if (allergies.length === 14) {
 			allergies = [];
 		}
-		console.log(allergies);
-		console.log(this.props.publicMenus);
 		const result = this.props.publicMenus.filter(({ allergen }) =>
 			allergies.every(key => allergen[key] !== this.props.allergySelector[key])
 		);
-		console.log(result);
 		return result.map(item => {
 			return (
 				<div key={item._id}>

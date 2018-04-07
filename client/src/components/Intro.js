@@ -2,9 +2,9 @@ import React from 'react';
 
 const Intro = () => {
   return (
-    <div className="content">
-  <div className="middle-content-middle">
 
+  <div className="content">
+<div className="middle-content-middle">
     <h1 className="landing-header">FIND WHATS RIGHT</h1>
     <div className="paragraph-container">
 
@@ -15,8 +15,6 @@ const Intro = () => {
 
     </div>
   </div>
-
-
 </div>
   )
 }

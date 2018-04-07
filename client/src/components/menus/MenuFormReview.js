@@ -19,15 +19,6 @@ const MenuFormReview = ({ onCancel, formValues, submitMenu, history }) => {
 			<div className="confirm-allergens" key={formValues[name]}>
 			{formValues[name] ? formValues[name] : null}
 			</div>
-			// 	<div className="allergen-item">
-			// 	</div>
-			// 	<label>
-			// 		<h2>{label}</h2>
-			// 	</label>
-			// 	<div>
-			// 		<p>{formValues[name] ? 'contains ' + formValues[name] : null}</p>
-			// 	</div>
-			// </div>
 		);
 	});
 	return (
@@ -53,9 +44,6 @@ const MenuFormReview = ({ onCancel, formValues, submitMenu, history }) => {
               <i className="fa fa-2x fa-check" aria-hidden="true" onClick={() => submitMenu(formValues, history)}></i>
             </div>
 				</div>
-
-
-
 </div>
 </div>
 	);

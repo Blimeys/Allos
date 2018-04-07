@@ -67,6 +67,7 @@ module.exports = app => {
 			category,
 			title,
 			description,
+			price,
 			gluten,
 			crustacean,
 			egg,

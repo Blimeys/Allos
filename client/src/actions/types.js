@@ -9,3 +9,4 @@ export const USER_VIEW_LOCATION = 'user_view_location';
 export const USER_CATEGORY_FILTER = 'user_category_filter';
 export const USER_ACTIVE_LOCATION = 'user_active_location';
 export const USER_ACTIVE_MENU = 'user_active_menu';
+export const USER_INIT_CATEGORY_LIST = 'USER_INIT_CATEGORY_LIST'

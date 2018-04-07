@@ -9,6 +9,17 @@
 	grid-column-gap: 0px;
 	margin: 0;
 }
+.landing-container {
+	display: grid;
+	grid-template-areas:
+		'header header header' 'content content content' 'left-content middle-content right-content'
+		'footer footer footer';
+	/*grid-template-rows: 80px 1fr 70px;*/
+	grid-template-columns: 10% 80% 10%;
+	grid-row-gap: 0px;
+	grid-column-gap: 0px;
+	margin: 0;
+}
 .footer-content {
 	grid-area: footer;
 }

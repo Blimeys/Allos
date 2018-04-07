@@ -2,7 +2,7 @@ import React from 'react';
 
 export default ({ input, label, meta: { error, touched } }) => {
 	return (
-		<div>
+		<div key={label}>
 			<input {...input} placeholder={label} />
 			<div className="form-warning">
 				{touched && error}

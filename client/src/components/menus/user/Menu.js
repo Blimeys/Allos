@@ -1,41 +1,101 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchLocations, filterLocations, userViewLocation } from '../../../actions';
+import { deleteMenuItem, userActiveMenu } from '../../../actions';
 
 class Menu extends Component {
+	constructor() {
+		super();
+		this.state = { refresh: true };
+	}
 	componentDidMount() {
-		this.props.fetchLocations();
+	}
+	deleteAndRefresh(menu) {
+		this.props.deleteMenuItem(menu);
+		this.props.userActiveMenu(this.props.activeMenuList.filter(item => item.title !== menu.title))
+	}
+	checkAllergen(item){
+		this.props.globalAllergens.map(allergen =>{
+			if(item[allergen] === true){
+				return this.renderAllergen(allergen)
+			}
+			return null
+
+
+		})
 	}
 	renderMenu(){
-		let selectedLocation = this.props.locations.find(selectedLocation => selectedLocation.location === this.props.userSelectLocation);
-		return(
-      <div className="location-grid" key={selectedLocation._id}>
-      	<div className="location-title">
-      		<h1 id={selectedLocation.location}>
-            {selectedLocation.location}
-      			<i className="fa fa-arrow-left location-arrow" aria-hidden="true"></i></h1>
-          </div>
-      <div className="location-grid-description">
-      	<div className="location-description-content">
-      		<div className="location-description-text">
-      			<p>
-							{selectedLocation.description}
-  </p>
-      		</div>
-      		<div className="public-location-url">
-      				<a href={"http://maps.google.com/?q=" + selectedLocation.streetAddress} target="_blank">{selectedLocation.streetAddress}</a><i className="fa fa-map-o" aria-hidden="true"></i>
-      		</div>
-      		<div className="public-location-url">
-      			<a href={selectedLocation.externalUrl} target="_blank">{selectedLocation.externalUrl}</a><i className="fa fa-link" aria-hidden="true"></i>
-      		</div>
-      	</div>
-      </div>
-      </div>
-    )
+		return this.props.activeMenuList.map(item => {
+			if (this.props.activeCategory === "all"){
+				return (
+						<div className="item item-grid-holder" key={item._id}	id={(item.location, item.category)}>
+						<div className="item-container">
+							<div className="item-title-container">
+								<div className="item-title">
+								<h1>
+									{item.title} <span className="user-price">{item.price}</span>
+								</h1>
+								</div>
+								<div className="item-utils">
+									<div className="delete-button" onClick={this.deleteAndRefresh.bind(this, item)}>
+										<i className="fa fa-trash-o" aria-hidden="true">
+										</i>
+									</div>
+								</div>
+							</div>
+								<div className="allergens">
+									<ul>
+										{this.props.globalAllergens && this.props.globalAllergens.map(allergen => {
+												if(item[allergen] === true){
+													return <li key={item._id + item.title + allergen}>{allergen}</li>
+												} return null
+											})}
+										</ul>
+									</div>
+									<div className="item-description">
+										<p>{item.description}</p>
+									</div>
+							</div>
+						</div>
+				)}	else if (this.props.activeCategory === item.category) {
+					return (
+						<div className="item item-grid-holder" key={item._id}	id={(item.location, item.category)}>
+						<div className="item-container">
+							<div className="item-title-container">
+								<div className="item-title">
+								<h1>
+									{item.title} <span className="user-price">{item.price}</span>
+								</h1>
+								</div>
+								<div className="item-utils">
+									<div className="delete-button" onClick={this.deleteAndRefresh.bind(this, item)}>
+										<i className="fa fa-trash-o" aria-hidden="true">
+										</i>
+									</div>
+								</div>
+							</div>
+								<div className="allergens">
+									<ul>
+										{this.props.globalAllergens && this.props.globalAllergens.map(allergen => {
+												if(item[allergen] === true){
+													return <li key={item._id + item.title + allergen}>{allergen}</li>
+												} return null
+											})}
+										</ul>
+									</div>
+									<div className="item-description">
+										<p>{item.description}</p>
+									</div>
+							</div>
+						</div>
+					)
+				}
+				return null;
+			}
+		)
 	}
 	render() {
 		return (
-			<div>
+			<div className="items-container items-grid">
 							{this.renderMenu()}
 	    </div>
 
@@ -43,12 +103,11 @@ class Menu extends Component {
 	}
 }
 
-function mapStatToProps({ locations, filters, userSelectLocation, activeLocation }) {
-	return { locations, filters, userSelectLocation, activeLocation };
+function mapStatToProps({ activeMenuList, activeCategory, globalAllergens }) {
+	return { activeMenuList, activeCategory, globalAllergens };
 }
 
 export default connect(mapStatToProps, {
-	fetchLocations,
-	filterLocations,
-	userViewLocation
+	userActiveMenu,
+deleteMenuItem
 })(Menu);

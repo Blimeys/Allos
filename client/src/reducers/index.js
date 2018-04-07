@@ -10,8 +10,10 @@ import allergySelectorReducer from './public/allergySelectorReducer';
 import filteredMenusReducer from './public/filteredMenusReducer';
 import userViewLocationReducer from './userViewLocation';
 import globalAllergensReducer from './globalAllergens';
-import userActiveLocationReducer from './userActiveLocationReducer';
+import userActiveLocationReducer from './view/user/userActiveLocationReducer';
 import userCategoryReducer from './userCategoryReducer';
+import userCategoriesListReducer from './view/user/userCategoriesListReducer'
+import userActiveMenusReducer from './view/user/userActiveMenuReducer'
 
 export default combineReducers({
 	auth: authReducer,
@@ -26,5 +28,7 @@ export default combineReducers({
 	userSelectLocation: userViewLocationReducer,
 	globalAllergens: globalAllergensReducer,
 	activeLocation: userActiveLocationReducer,
-	activeCategory: userCategoryReducer
+	activeCategory: userCategoryReducer,
+	categoriesList: userCategoriesListReducer,
+	activeMenuList: userActiveMenusReducer
 });

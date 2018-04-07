@@ -291,7 +291,10 @@ body {
 }
 .items-container {
 }
-
+.user-price {
+	text-align: right;
+	float: right;
+}
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
 	.location-grid {
 		grid-template-areas: 'location-left' 'location-right';

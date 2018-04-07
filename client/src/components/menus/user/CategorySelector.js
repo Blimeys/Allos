@@ -1,31 +1,57 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { userCategoryFilter } from '../../../actions';
+import { userCategoryFilter, deleteMenuItem } from '../../../actions';
 
 class CategorySelector extends Component {
+	constructor() {
+		super();
+		this.state = { category: false};
+	}
 	componentDidMount() {
 	}
-	findCategories(){
-		let activeMenu = this.props.menus.filter(item => item.location === this.props.activeLocation)
-		let categories = activeMenu.map(item => item.category).filter((value, index, self) => self.indexOf(value) === index)
+
+	handleCategory(activeCategory){
+		this.props.userCategoryFilter(activeCategory);
+		this.setState({category : activeCategory })
+	}
+
+	renderCategories(){
+		let categories = this.props.activeMenuList.map(item => item.category).filter((value, index, self) => self.indexOf(value) === index)
 		return (
 			categories.map(category => {
-			return(
-				<li
-					className="user-location location-on"
-					key={category}
-					if={category}
-				>
-					{category}
-				</li>
-			)
+				return (
+					<li
+						className={this.state.category === category ? "user-location location-on" : "user-location"}
+						key={category}
+						if={category}
+						onClick={this.handleCategory.bind(this, category)}
+					>
+						{category}
+					</li>
+				)
 		})
+		)
+	}
+	renderAll(){
+		let all = "all"
+		return (
+			<li
+				className={this.state.category === "all" ? "user-location location-on" : "user-location"}
+				key={all}
+				if={all}
+				onClick={this.handleCategory.bind(this, all)}
+			>
+				{all}
+			</li>
 		)
 	}
 	render() {
 		return (
 			<div className="location-selector">
-					<ul>{this.findCategories()}
+					<ul>
+						{this.renderAll()}
+						{this.renderCategories()}
+
 					</ul>
 			</div>
 
@@ -33,10 +59,11 @@ class CategorySelector extends Component {
 	}
 }
 
-function mapStatToProps({ menus, activeLocation }) {
-	return { menus, activeLocation };
+function mapStatToProps({ menus, activeLocation, activeCategory, activeMenuList, categoriesList }) {
+	return { menus, activeLocation, activeCategory, activeMenuList, categoriesList };
 }
 
 export default connect(mapStatToProps, {
-	userCategoryFilter
+	userCategoryFilter,
+	deleteMenuItem
 })(CategorySelector);
